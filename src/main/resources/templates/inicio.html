@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T2 Wismann</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-4">Lista Empleados</h2>
+    <table class="table table-bordered table-striped mt-4">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">DNI</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Fecha Nacimiento</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Área</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="e : ${listaEmpleados}">
+                <td th:text="${e.dni}"></td>
+                <td th:text="${e.nombre}"></td>
+                <td th:text="${e.apellido}"></td>
+                <td th:text="${e.fecNaci}"></td>
+                <td th:text="${e.direc}"></td>
+                <td th:text="${e.correo}"></td>
+                <td th:text="${e.AreaEntity.nomArea}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
