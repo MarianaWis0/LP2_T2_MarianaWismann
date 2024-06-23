@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle Empleado</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+
+<div th:action="@{/detalle_empleado/{dni}}" th:object="${empleado}" method="post">
+    <div class="container mt-4">
+    
+       <div class="card mt-4">
+    <div class="card-body">
+        <h5 class="card-title">Información del Empleado</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="card-text"><strong>DNI:</strong> <span th:text="${empleado.dni}"></span></p>
+                <p class="card-text"><strong>Nombres:</strong> <span th:text="${empleado.nombre}"></span></p>
+                <p class="card-text"><strong>Apellidos:</strong> <span th:text="${empleado.apellido}"></span></p>
+                <p class="card-text"><strong>Fecha de Nacimiento:</strong> <span th:text="${empleado.fecNaci}"></span></p>
+            </div>
+            <div class="col-md-6">
+                <p class="card-text"><strong>Dirección:</strong> <span th:text="${empleado.direc}"></span></p>
+                <p class="card-text"><strong>Correo:</strong> <span th:text="${empleado.correo}"></span></p>
+                <p class="card-text"><strong>Área:</strong> <span th:text="${empleado.areaEntity.nomArea}"></span></p>
+            </div>
+        </div>
+    </div>
+</div>
+     <br>
+        <a class="btn btn-primary" href="/listar">Regresar</a>
+    </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies (optional if needed for other functionalities) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

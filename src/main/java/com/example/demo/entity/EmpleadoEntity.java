@@ -29,7 +29,7 @@ import lombok.ToString;
 public class EmpleadoEntity {
     
     @Id
-    @Column(name="dni_empleado", nullable = false, length = 8, columnDefinition = "CHAR(8)")
+    @Column(name="dni_empleado", nullable = false, length = 8, columnDefinition = "CHAR(8)", unique= true)
     private String dni;
     
     @Column(name = "nombre_empleado", nullable = false, length = 45, columnDefinition = "VARCHAR(45)")
@@ -38,7 +38,7 @@ public class EmpleadoEntity {
     @Column(name = "apellido_empleado", nullable = false, length = 45, columnDefinition = "VARCHAR(45)")
     private String apellido;
     
-    @Column(name = "fecha_nacimiento", nullable = false, updatable = false)
+    @Column(name = "fecha_nacimiento", nullable = false, updatable = true)
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecNaci;
     
