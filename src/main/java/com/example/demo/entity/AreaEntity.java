@@ -24,7 +24,7 @@ public class AreaEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="area_id")
+	@Column(name="area_id", unique= true)
 	private Integer areaId;
 	
 	@Column(name = "nombre_area", nullable = false, length = 45, columnDefinition = "VARCHAR(45)")

@@ -45,17 +45,43 @@ public class EmpleadoController {
 	    public String registrarEmpleado(Model model, @ModelAttribute EmpleadoEntity empleado, RedirectAttributes redirectAttributes) {
 	    	empleadoRepository.save(empleado);
 	    	
-	    	  redirectAttributes.addFlashAttribute("mensaje", "Empleado registrado exitosamente");
+	   
 	    	
 	        return "redirect:/listar";
 	    }
 	
 	    
 	//Detalle
-	    
+	    @GetMapping("/detalle_empleado/{dni}")
+		public String verEmpleado(Model model , @PathVariable("dni")String dni) {
+			List<AreaEntity> listaArea = areaRepository.findAll();
+			EmpleadoEntity empleadoEncontrado = empleadoRepository.findByDniE(dni);
+			 model.addAttribute("empleado",empleadoEncontrado);
+			return "detalle";
+		}
+		
 	    
 	//Actualizar
 	
+	    @GetMapping("/actualizar_empleado{dni}")
+	    public String actualizarEmpleado(Model model, @PathVariable("dni") String dni) {
+	        EmpleadoEntity empleado = empleadoRepository.findByDni(dni);
+	        List<AreaEntity> listaArea = areaRepository.findAll();
+	    
+	        model.addAttribute("listaArea", listaArea);
+	        model.addAttribute("empleado", empleado);
+	        return "actualizar";
+	    }
+
+	    @PostMapping("/actualizar_empleado")
+	    public String actualizarEmpleado(@ModelAttribute EmpleadoEntity empleado, RedirectAttributes redirectAttributes) {
+	        empleadoRepository.save(empleado);
+	        
+	
+	        
+	        return "redirect:/listar";
+	    }
+
 	
 	//Eliminar	
 	    @GetMapping("/eliminar_empleado/{dni}")

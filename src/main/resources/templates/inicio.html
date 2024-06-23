@@ -13,12 +13,6 @@
 <div class="container">
 
 
-<div th:if="${mensaje}" class="alert alert-success alert-dismissible fade show" role="alert">
-            <p th:text="${mensaje}"></p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
 
     <h2 class="mt-4">Lista Empleados</h2>
     
@@ -50,15 +44,24 @@
                 <td th:text="${e.correo}"></td>
                 <td th:text="${e.areaEntity.nomArea}"></td>
 		        <td>
-		         <a th:href="@{/eliminar_empleado/{dni}(dni=${e.dni})}"
+		         <a th:href="@{/actualizar_empleado{dni}(dni=${e.dni})}"
 				       style="color: green; text-decoration: none; ">
 				       Editar
 				    </a>
+				    
+				    
 		        ||
 				    <a th:href="@{/eliminar_empleado/{dni}(dni=${e.dni})}"
 				       onclick="return confirm('¿Estás seguro de eliminar a este empleado?')"
 				       style="color: red; text-decoration: none; ">
 				       Eliminar
+				    </a>
+				    
+				       ||
+				    <a th:href="@{/detalle_empleado/{dni}(dni=${e.dni})}"
+			
+				       style="color: #C3A748; text-decoration: none; ">
+				       Detalle
 				    </a>
 				    
 				</td>
