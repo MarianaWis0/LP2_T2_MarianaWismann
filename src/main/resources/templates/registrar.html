@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Empleado</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-4">Registrar Empleado</h2>
+
+    <form th:action="@{/registrar_empleado}" th:object="${empleado}" method="post">
+        <div class="form-group">
+            <label for="dni">DNI</label>
+            <input type="text" class="form-control" id="dni" th:field="*{dni}" placeholder="Ingrese su DNI" required>
+        </div>
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" placeholder="Ingrese sus Nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" id="apellido" th:field="*{apellido}" placeholder="Ingrese su Apellido" required>
+        </div>
+        <div class="form-group">
+            <label for="fecNaci">Fecha de Nacimiento (yy/mm/dd):</label>
+            <input type="datetime" class="form-control" id="fecNaci" name="fecNaci" placeholder="yy/mm/dd" required>
+        </div>
+        <div class="form-group">
+            <label for="direc">Dirección</label>
+            <input type="text" class="form-control" id="direc" th:field="*{direc}" placeholder="Ingrese su Dirección" required>
+        </div>
+        <div class="form-group">
+            <label for="correo">Correo</label>
+            <input type="email" class="form-control" id="correo" th:field="*{correo}" placeholder="Ingrese su Correo Electrónico" required>
+        </div>
+        <div class="form-group">
+            <label for="areaId">Seleccione su Área:</label>
+            <select name="itemId" id="areaId" class="form-control" th:field="*{areaEntity.areaId}">
+                <option value="" disabled selected>Selecciona una Área</option>
+                <option th:each="item : ${listaArea}" th:value="${item.areaId}" th:text="${item.nomArea}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a th:href="@{/listar}" class="btn btn-primary">Regresar</a>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

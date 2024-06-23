@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.entity.AreaEntity;
 import com.example.demo.entity.EmpleadoEntity;
@@ -33,23 +34,33 @@ public class EmpleadoController {
 	
 	//Crear
 	 @GetMapping("/registrar_empleado")
-	    public String showRegistrarProducto(Model model) {
+	    public String showRegistrarEmpleado(Model model) {
 	        List<AreaEntity>listaArea = areaRepository.findAll();
 	        model.addAttribute("listaArea", listaArea);
 	        model.addAttribute("empleado", new EmpleadoEntity());
-	        return "registrar_empleado";
+	        return "registrar";
 	    }
 
-	    @PostMapping("/registrar_producto")
-	    public String registrarProducto(Model model, @ModelAttribute EmpleadoEntity empleado) {
+	    @PostMapping("/registrar_empleado")
+	    public String registrarEmpleado(Model model, @ModelAttribute EmpleadoEntity empleado, RedirectAttributes redirectAttributes) {
 	    	empleadoRepository.save(empleado);
+	    	
+	    	  redirectAttributes.addFlashAttribute("mensaje", "Empleado registrado exitosamente");
+	    	
 	        return "redirect:/listar";
 	    }
 	
+	    
+	//Detalle
+	    
+	    
 	//Actualizar
 	
 	
-	
 	//Eliminar	
-
+	    @GetMapping("/eliminar_empleado/{dni}")
+	    public String eliminarEmpleado(@PathVariable("dni") String dni) {
+	        empleadoRepository.deleteById(dni);
+	        return "redirect:/listar";
+	    }
 }
